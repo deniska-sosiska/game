@@ -63,7 +63,6 @@ class circles():
             click = 0
 
 
-
 #run#run#run#run#run#run#run#run#run#run#run#run#run#run#run#run#run#run#run#run#run#run#run#run#run#run#run#
 while run:
     clock.tick(30)
@@ -73,6 +72,8 @@ while run:
     window.blit(text, [1200, 50])
     keys = pygame.key.get_pressed()
     #global alltime
+
+    input()
 
 
     if len(aim) < 5:
