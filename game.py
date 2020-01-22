@@ -8,27 +8,60 @@ pygame.display.set_caption("Aim")
 background_image = pygame.image.load('back.jpg')
 window.blit(background_image, (0, 0))
 
+lvl_choice = [pygame.image.load('Easy_lvl.png'), pygame.image.load('Hard_lvl.png')]
 Label_StartMenu = pygame.image.load('Label_StartMenu.png')
 sizeLvl_x = (sizeW_x // 2) - (347 // 2)
 sizeLvl_y = 260
 window.blit(Label_StartMenu, (sizeLvl_x, sizeLvl_y))
 sizeLvl_y += 100
+y_lvl = [sizeLvl_y]
 
-lvl_choice = [pygame.image.load('Easy_lvl.png'), pygame.image.load('Hard_lvl.png')]
 window.blit(lvl_choice[0], (sizeLvl_x, sizeLvl_y))
-sizeLvl_y += 70
+sizeLvl_y += 80
 window.blit(lvl_choice[1], (sizeLvl_x, sizeLvl_y))
+y_lvl.append(sizeLvl_y)
 
 pygame.display.update()
 # pygame.time.wait(10000)
 
 run_lvl = True
+oneMore_choice = False
+
+def pos_lvl():
+    global oneMore_choice
+    yes = 0
+    no = 0
+    for i in range(2):
+        if ((pos_Mouse[0] >= sizeLvl_x) and (pos_Mouse[1] <= sizeLvl_x + 347) and
+            (pos_Mouse[1] >= y_lvl[i]) and (pos_Mouse[1] <= y_lvl[i] + 59)):
+            yes += 1
+    #        no += 1
+            break
+        else:
+            no += 1
+
+    if (yes == 1) and (no == 0):
+        pygame.time.wait(3000)
+    elif (no == 1) and (yes == 1):
+        pygame.time.wait(7000)
+    elif no > 1:
+        pygame.time.wait(12000)
+        #oneMore_choice = True
+        #kk = 0
+
+
 
 while run_lvl:
+    keys = pygame.key.get_pressed()
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos_Mouse = pygame.mouse.get_pos()
+            pos_lvl()
+            #if oneMore_choice:
+            #    pass
+            #else:
             run_lvl = False
+
 
 
 
