@@ -6,6 +6,31 @@ sizeW_x = 1366; sizeW_y = 768
 window = pygame.display.set_mode((sizeW_x, sizeW_y), pygame.FULLSCREEN)
 pygame.display.set_caption("Aim")
 background_image = pygame.image.load('back.jpg')
+window.blit(background_image, (0, 0))
+
+Label_StartMenu = pygame.image.load('Label_StartMenu.png')
+sizeLvl_x = (sizeW_x // 2) - (347 // 2)
+sizeLvl_y = 260
+window.blit(Label_StartMenu, (sizeLvl_x, sizeLvl_y))
+sizeLvl_y += 100
+
+lvl_choice = [pygame.image.load('Easy_lvl.png'), pygame.image.load('Hard_lvl.png')]
+window.blit(lvl_choice[0], (sizeLvl_x, sizeLvl_y))
+sizeLvl_y += 70
+window.blit(lvl_choice[1], (sizeLvl_x, sizeLvl_y))
+
+pygame.display.update()
+# pygame.time.wait(10000)
+
+run_lvl = True
+
+while run_lvl:
+    for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            pos_Mouse = pygame.mouse.get_pos()
+            run_lvl = False
+
+
 
 #var#var#var#var#var#var#var#var#var#var#var#var#var#var#var#var#var#var#var#var#var#var#var#var#var#var#var#var
 run = True
@@ -19,8 +44,8 @@ click = 0
 class circles():
     def __init__(self):
         self.r = 10
-        self.x = random.randint(200 + self.r, sizeW_x - self.r - 200)
-        self.y = random.randint(100 + self.r, sizeW_y - self.r - 100)
+        self.x = random.randint(235 + self.r, sizeW_x - self.r - 235)
+        self.y = random.randint(135 + self.r, sizeW_y - self.r - 135)
         self.time = 0
         self.anim = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
         22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
@@ -72,9 +97,6 @@ while run:
     window.blit(text, [1200, 50])
     keys = pygame.key.get_pressed()
     #global alltime
-
-    input()
-
 
     if len(aim) < 5:
         for i in range(100):
