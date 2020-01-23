@@ -25,29 +25,32 @@ pygame.display.update()
 # pygame.time.wait(10000)
 
 run_lvl = True
-oneMore_choice = False
+obj_lvl = 1
 
 def pos_lvl():
     global oneMore_choice
+    global obj_lvl
     yes = 0
     no = 0
     for i in range(2):
         if ((pos_Mouse[0] >= sizeLvl_x) and (pos_Mouse[1] <= sizeLvl_x + 347) and
-            (pos_Mouse[1] >= y_lvl[i]) and (pos_Mouse[1] <= y_lvl[i] + 59)):
+            (pos_Mouse[1] >= y_lvl[i]) and (pos_Mouse[1] <= y_lvl[i] + 50)):
             yes += 1
-    #        no += 1
+            print(pos_Mouse)
             break
         else:
             no += 1
+            print(pos_Mouse)
 
     if (yes == 1) and (no == 0):
-        pygame.time.wait(3000)
+        obj_lvl = 3
     elif (no == 1) and (yes == 1):
-        pygame.time.wait(7000)
+        obj_lvl = 5
     elif no > 1:
-        pygame.time.wait(12000)
-        #oneMore_choice = True
-        #kk = 0
+        pass
+
+    pygame.time.wait(500)
+
 
 
 
@@ -77,8 +80,8 @@ click = 0
 class circles():
     def __init__(self):
         self.r = 10
-        self.x = random.randint(235 + self.r, sizeW_x - self.r - 235)
-        self.y = random.randint(135 + self.r, sizeW_y - self.r - 135)
+        self.x = random.randint(236 + self.r, sizeW_x - self.r - 236)
+        self.y = random.randint(136 + self.r, sizeW_y - self.r - 136)
         self.time = 0
         self.anim = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
         22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
@@ -129,9 +132,8 @@ while run:
     text = font.render("Score: "+str(score),True, (0,0,255))
     window.blit(text, [1200, 50])
     keys = pygame.key.get_pressed()
-    #global alltime
 
-    if len(aim) < 5:
+    if len(aim) < (obj_lvl):
         for i in range(100):
             alltime += i
             if alltime >= 50000:
@@ -152,10 +154,10 @@ while run:
                 click = 0
 
 
+    #exit from while
+
         if event.type == pygame.QUIT:
             run = False
-
-    #exit from while
 
     if keys[pygame.K_SPACE]:
         run = False
