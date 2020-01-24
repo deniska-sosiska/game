@@ -33,8 +33,8 @@ def pos_lvl():
     yes = 0
     no = 0
     for i in range(2):
-        if ((pos_Mouse[0] >= sizeLvl_x) and (pos_Mouse[1] <= sizeLvl_x + 347) and
-            (pos_Mouse[1] >= y_lvl[i]) and (pos_Mouse[1] <= y_lvl[i] + 50)):
+        if ((pos_Mouse[0] >= sizeLvl_x) and (pos_Mouse[0] <= sizeLvl_x + 347) and
+            (pos_Mouse[1] >= y_lvl[i]) and (pos_Mouse[1] <= y_lvl[i] + 59)):
             yes += 1
             print(pos_Mouse)
             break
@@ -50,7 +50,6 @@ def pos_lvl():
         pass
 
     pygame.time.wait(500)
-
 
 
 
